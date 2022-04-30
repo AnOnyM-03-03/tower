@@ -1,0 +1,103 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: rgb(39, 34, 34);
+    overflow: hidden;
+}
+.loader{
+    position: relative;
+    transform: skewY(-15deg) translateX(50px) translateY(50px);
+    animation-name: animateColor ;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: 2.5s;
+}
+@keyframes animateColor {
+    /* Функция hue-rotate() изменяет цветность изображения за счёт поворота оттенка на цветовом круге. */
+    0%{
+        filter: hue-rotate(0deg);
+    }
+    100%{
+        filter: hue-rotate(360deg);
+    }
+    
+}
+.loader::before{
+    content: '';
+    position: absolute;
+    top: 300px;
+    width: 300px;
+    height: 200px;
+    background-color: rgba(0,0,0,0.5);
+    /* z-index: 100; */
+    transform: skewX(45deg);
+    filter: blur(20px);
+    transform-origin: bottom;
+}
+.loader span{
+    position: relative;
+    width: 200px;
+    height: 40px;
+    background-color: rgb(17, 48, 63);
+    display: block;
+    transition: 0.5s;
+    z-index: var(--i);
+    animation-name: animate ;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-duration: 5s;
+    animation-delay: calc(-0.7s * var(--i));
+}
+@keyframes animate {
+    0%,100%{
+        transform: translateX(-70px);
+    }
+    50%{
+        transform: translateX(70px);
+    }
+    
+}
+.loader span:hover{
+    background-color: cornflowerblue;
+    transition: 0s;
+}
+.loader span::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150px;
+    height: 100%;
+    width: 150px;
+    /* background-color: aqua; */
+    transform: skewY(45deg);
+    transform-origin: right;
+    background-color: rgb(6, 20, 27);
+    transition: 0.5s;
+}
+.loader span:hover::before{
+    background-color: cornflowerblue;
+    transition: 0s;
+}
+.loader span::after{
+    content: '';
+    position: absolute;
+    top: -150px;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    transform-origin: bottom;
+    transform: skewX(45deg);
+    background-color: rgb(6, 20, 27);
+    transition: 0.5s;
+}
+.loader span:hover::after{
+    background-color: cornflowerblue;
+    transition: 0s;
+}
